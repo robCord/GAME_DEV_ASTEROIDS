@@ -19,4 +19,12 @@ public class GameManager : MonoBehaviour
             Debug.LogError("GameObject has been destroyed, tried to create a second game manager");
         }
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
 }
