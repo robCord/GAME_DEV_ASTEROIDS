@@ -17,6 +17,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //inputs for movement for the player
         if (Input.GetKey(KeyCode.UpArrow))
         {
             tf.position += tf.right * MovementSpeed * Time.deltaTime;
@@ -40,5 +41,20 @@ public class Player : MonoBehaviour
     public void Shoot()
     {
         throw new NotImplementedException();
+    }
+
+    void OnDestroy()
+    {
+        //if player dies, it loses 1 life 
+        GameManager.Instance.Lives -= 1;
+        //if player has lives above 0, it will respawn
+        if (GameManager.Instance.Lives > 0)
+        {
+            GameManager.Instance.Respawn();
+        }
+        else
+        {
+            Debug.Log("game over");
+        }
     }
 }
