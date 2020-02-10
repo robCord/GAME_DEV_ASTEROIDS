@@ -4,19 +4,39 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
-    public int Score = 0;
+    public GameObject playerPrefab;
+    public GameObject player;
+    public GameObject asteroidPrefab;
+    public static GameManager instance;
+    public int lives = 3;
+    public int score = 0;
+    public bool isPaused = false;
+    public List<GameObject> enemiesList = new List<GameObject>();
 
     public void Awake()
     {
-        if (Instance == null)
+        if (instance == null)
         {
-            Instance = this; 
+            instance = this;
         }
         else
         {
             Destroy(this.gameObject);
-            Debug.LogError("GameObject has been destroyed, tried to create a second game manager");
+            Debug.LogError("I tried to create a second game manager.");
         }
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
+    public void Respawn()
+    {
+        Instantiate(playerPrefab);
+    }
+
 }

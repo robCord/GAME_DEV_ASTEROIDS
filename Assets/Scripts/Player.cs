@@ -44,7 +44,27 @@ public class Player : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D otherObject)
     {
-        Debug.Log("detected" + otherObject.gameObject.name);
+        Debug.Log("[Collision Entered] The GameObject of the other object is named: " + otherObject.gameObject.name);
     }
+
+    void OnCollisionExit2D(Collision2D otherObject)
+    {
+        Debug.Log("[Collision Exited] The GameObject of the other object is named: " + otherObject.gameObject.name);
+    }
+
+    void OnDestroy()
+    {
+        // If the player dies, they lose a life.
+        GameManager.instance.lives -= 1;
+        if (GameManager.instance.lives > 0)
+        {
+            GameManager.instance.Respawn();
+        }
+        else
+        {
+            Debug.Log("Game Over");
+        }
+    }
+
 
 }
