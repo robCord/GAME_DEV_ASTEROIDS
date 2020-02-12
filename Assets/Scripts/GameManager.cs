@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public int score = 0;
     public bool isPaused = false;
     public List<GameObject> enemiesList = new List<GameObject>();
-
+    public GameManager[] enemyPrefabs;
     public void Awake()
     {
         if (instance == null)
@@ -38,5 +38,7 @@ public class GameManager : MonoBehaviour
     {
         Instantiate(playerPrefab);
     }
+
+
 
 }

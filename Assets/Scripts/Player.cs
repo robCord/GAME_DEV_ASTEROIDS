@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
     private Transform tf;
     public float RotationSpeed = 1.0f;
     public float MovementSpeed = 1.0f;
+
+    public GameObject bulletPrefab;
+
+    public Transform firePoint;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,7 +43,7 @@ public class Player : MonoBehaviour
     //firing function
     public void Shoot()
     {
-        throw new NotImplementedException();
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
     void OnCollisionEnter2D(Collision2D otherObject)
